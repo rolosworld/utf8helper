@@ -33,5 +33,5 @@ unsigned short utf8_SmallCodePoint2Bin(const char* _s);
 char utf8_SmallBytesNeeded(unsigned short _p);
 char* utf8_SmallCodePoint2Unicode(const char* _s);
 char* utf8_ToSmallCodePoint(const char* _s);
-char utf8_IsValid(const char* _s);
-ssize_t utf8_charCount(const char* b);
+char utf8_IsValid(const char* _s, size_t _l);
+ssize_t utf8_charCount(const char* b, size_t l);

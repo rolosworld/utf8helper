@@ -160,7 +160,7 @@ char* utf8_ToSmallCodePoint(const char* _s) {
     return NULL;
 }
 
-ssize_t utf8_charCount(const char* b) {
+ssize_t utf8_charCount(const char* b, size_t len) {
     // 1000000000
     unsigned char one = 0x80;
     
@@ -177,7 +177,7 @@ ssize_t utf8_charCount(const char* b) {
     unsigned char four = 0xF8;
 
     size_t l = 0;
-    while (*b != '\0') {
+    while (len--) {
         if ((*b & four) == three) {
             l += 10; // \Uxxxxxxxx
             if ((*(b+1) & part) != one ||
@@ -214,12 +214,12 @@ ssize_t utf8_charCount(const char* b) {
     return l;
 }
 
-char utf8_IsValid(const char* _s) {
+char utf8_IsValid(const char* _s, size_t _l) {
   if (_s == NULL) {
     return 0;
   }
 
-  ssize_t l = utf8_charCount(_s);
+  ssize_t l = utf8_charCount(_s, _l);
   if (l < 0) {
     return 0;
   }
